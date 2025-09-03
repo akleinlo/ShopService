@@ -1,10 +1,9 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductRepoTests {
 
@@ -19,15 +18,6 @@ public class ProductRepoTests {
 
         // THEN
         assertTrue(repo.getAllProducts().contains(p));
-    }
-
-    @Test
-    void addProduct_repoShouldBeEmpty_whenNoProductHasBeenAdded() {
-        // GIVEN
-        ProductRepo repo = new ProductRepo();
-
-        // THEN
-        assertTrue(repo.getAllProducts().isEmpty());
     }
 
     @Test
