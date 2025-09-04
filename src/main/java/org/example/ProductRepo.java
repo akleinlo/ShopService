@@ -11,17 +11,17 @@ public class ProductRepo {
         products.add(product);
     }
 
-    public List<Product> getAllProducts() {
-        return products;
-    }
-
     public void removeProduct(Product product) {
         products.remove(product);
     }
 
+    public List<Product> getAllProducts() {
+        return products;
+    }
+
     public Product getSingleProduct(int id) {
         for (Product p : products) {
-            if (id == p.id()) {
+            if (id == p.productID()) {
                 return p;
             }
         }
@@ -29,7 +29,6 @@ public class ProductRepo {
     }
 
     // OVERRIDDEN METHODS
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

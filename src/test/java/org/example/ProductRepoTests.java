@@ -57,7 +57,7 @@ public class ProductRepoTests {
         repo.addProduct(p);
 
         // WHEN
-        Product result = repo.getSingleProduct(p.id());
+        Product result = repo.getSingleProduct(p.productID());
 
         // THEN
         assertEquals(p, result);
