@@ -18,15 +18,15 @@ public class ShopServiceTests {
         productRepo.addProduct(product1);
         productRepo.addProduct(product2);
 
-        OrderListRepo orderListRepo = new OrderListRepo();
+        OrderRepoInterface orderRepo = new OrderMapRepo();
 
-        ShopService shopService = new ShopService(productRepo, orderListRepo);
+        ShopService shopService = new ShopService(productRepo, orderRepo);
 
         // WHEN
         shopService.placeOrder(List.of(4763, 4769), 5165);
 
         // THEN
-        Order order = orderListRepo.getOrderByID(5165);
+        Order order = orderRepo.getOrderByID(5165);
         assertEquals(2, order.products().size()); // should contain 2 products
         assertEquals(new BigDecimal("7150.00"), order.totalPrice());
 

@@ -7,11 +7,15 @@ import java.util.Objects;
 
 public class ShopService {
     private final ProductRepo productRepo; // knows all products
-    private final OrderListRepo orderListRepo; // saves orders
+    // private final OrderListRepo orderListRepo; // saves orders
+    //private final OrderMapRepo orderMapRepo;
+    private final OrderRepoInterface orderRepo;
 
-    public ShopService(ProductRepo productRepo, OrderListRepo orderListRepo) {
+    // Constructor
+    public ShopService(ProductRepo productRepo, OrderRepoInterface orderRepo) {
         this.productRepo = productRepo;
-        this.orderListRepo = orderListRepo;
+        //this.orderListRepo = orderListRepo;
+        this.orderRepo = orderRepo;
     }
 
     // GETTER
@@ -19,8 +23,8 @@ public class ShopService {
         return productRepo;
     }
 
-    public OrderListRepo getOrderListRepo() {
-        return orderListRepo;
+    public OrderRepoInterface getOrderRepo() {
+        return orderRepo;
     }
 
 
@@ -40,27 +44,28 @@ public class ShopService {
             }
         }
         Order order = new Order(orderID, products, total); // Assemble order
-        orderListRepo.addOrder(order);
+        orderRepo.addOrder(order);
     }
 
     // OVERRIDDEN METHODS
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         ShopService that = (ShopService) o;
-        return Objects.equals(productRepo, that.productRepo) && Objects.equals(orderListRepo, that.orderListRepo);
+        return Objects.equals(productRepo, that.productRepo) && Objects.equals(orderRepo, that.orderRepo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productRepo, orderListRepo);
+        return Objects.hash(productRepo, orderRepo);
     }
 
     @Override
     public String toString() {
         return "ShopService{" +
                 "productRepo=" + productRepo +
-                ", orderListRepo=" + orderListRepo +
+                ", orderRepo=" + orderRepo +
                 '}';
     }
 }
