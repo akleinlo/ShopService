@@ -7,14 +7,11 @@ import java.util.Objects;
 
 public class ShopService {
     private final ProductRepo productRepo; // knows all products
-    // private final OrderListRepo orderListRepo; // saves orders
-    //private final OrderMapRepo orderMapRepo;
     private final OrderRepoInterface orderRepo;
 
     // Constructor
     public ShopService(ProductRepo productRepo, OrderRepoInterface orderRepo) {
         this.productRepo = productRepo;
-        //this.orderListRepo = orderListRepo;
         this.orderRepo = orderRepo;
     }
 
@@ -27,7 +24,6 @@ public class ShopService {
         return orderRepo;
     }
 
-
     // METHODS
     public void placeOrder(List<Integer> productIDs, int orderID) {
         List<Product> products = new ArrayList<>(); // collects found products
@@ -36,9 +32,9 @@ public class ShopService {
         for (int id : productIDs) {
             try {
                 Product p = productRepo.getSingleProduct(id); // Product lookup (throws exception if not found)
-                products.add(p); // Add to order list
-                total = total.add(p.price()); // Add price (BigDecimal instead of +)
-            } catch (IllegalArgumentException e) { // Product not found
+                products.add(p); // add to order list
+                total = total.add(p.price()); // add price (BigDecimal instead of +)
+            } catch (IllegalArgumentException e) { // product not found
                 System.out.println("Product with ID " + id + " does not exist.");
                 return; // order is not being saved
             }
@@ -48,7 +44,6 @@ public class ShopService {
     }
 
     // OVERRIDDEN METHODS
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

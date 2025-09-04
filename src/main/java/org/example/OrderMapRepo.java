@@ -9,12 +9,12 @@ public class OrderMapRepo implements OrderRepoInterface{
         orders.put(order.orderID(), order);
     }
 
-    public List<Order> getAllOrders() {
-        return new ArrayList<>(orders.values());
-    }
-
     public void removeOrder(Order order) {
         orders.remove(order.orderID());
+    }
+
+    public List<Order> getAllOrders() {
+        return new ArrayList<>(orders.values());
     }
 
     public Order getOrderByID(int id) {
@@ -26,8 +26,6 @@ public class OrderMapRepo implements OrderRepoInterface{
     }
 
     // OVERRIDDEN METHODS
-
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

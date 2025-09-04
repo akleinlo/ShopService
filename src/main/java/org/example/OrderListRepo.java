@@ -11,12 +11,12 @@ public class OrderListRepo {
         orders.add(order);
     }
 
-    public List<Order> getAllOrders() {
-        return orders;
-    }
-
     public void removeOrder(Order order) {
         orders.remove(order);
+    }
+
+    public List<Order> getAllOrders() {
+        return orders;
     }
 
     public Order getOrderByID(int id) {
